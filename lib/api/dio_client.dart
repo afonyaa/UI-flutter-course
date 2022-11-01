@@ -1,15 +1,15 @@
 import 'package:dio/dio.dart';
 import 'package:chack_norris/models/Joke.dart';
+import 'package:chack_norris/api/constants.dart' as Constants;
 
 class DioClient {
   final Dio _dio = Dio();
-  final String _baseUrl = 'https://api.chucknorris.io/jokes/random';
+  final String _baseUrl = Constants.API_URI;
 
   Future<Joke?> getJoke() async {
     Joke? joke;
     try {
       final Response response = await Dio().get(_baseUrl);
-      print(response);
       joke = Joke.fromJson(response.data);
     } on DioError catch (e) {
       if (e.response != null) {
