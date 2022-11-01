@@ -3,6 +3,8 @@ import 'dart:math';
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:chack_norris/models/Joke.dart';
+import 'package:chack_norris/api/DioClient.dart';
 
 void main() {
   runApp(ChackNorrisApp());
@@ -16,20 +18,24 @@ class ChackNorrisApp extends StatefulWidget {
 }
 
 class _AppState extends State<ChackNorrisApp> {
-  late List<String> jokes;
-  late int currentJokeIdx;
+  // late final List<String> jokes;
+  // late final int currentJokeIdx;
+  late String _currentJoke = "";
+  late final DioClient dioClient = DioClient();
 
   @override
   void initState() {
-    jokes = [
-      "But please don't tell Chuck Norris",
-      "Chuck Norris does not sleep. He waits.",
-      "The chief export of Chuck Norris is pain",
-      "Chuck Norris can dribble a bowling ball."
-    ];
-    currentJokeIdx = 0;
+    _updateJoke();
 
     super.initState();
+  }
+
+  void _updateJoke() {
+    dioClient.getJoke().then((joke) => {
+          setState(() {
+            _currentJoke = joke!.value;
+          })
+        });
   }
 
   @override
@@ -60,11 +66,11 @@ class _AppState extends State<ChackNorrisApp> {
                 ),
                 Container(
                     margin: const EdgeInsets.only(top: 20.0),
-                    child: Text(jokes[currentJokeIdx], // todo: textWrap:
+                    child: Text(_currentJoke,
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             color: Colors.white54,
-                            fontSize: 52)))
+                            fontSize: 42)))
               ],
             )),
         floatingActionButton: FloatingActionButton(
@@ -74,13 +80,5 @@ class _AppState extends State<ChackNorrisApp> {
         ),
       ),
     );
-  }
-
-  void _updateJoke() {
-    Random random = Random();
-    int newIdx = random.nextInt(jokes.length);
-    setState(() {
-      currentJokeIdx = newIdx;
-    });
   }
 }
