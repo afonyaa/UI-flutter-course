@@ -1,16 +1,23 @@
-# chack_norris
+# Chack Norris Jokes
 
-A new Flutter project.
+2nd Assignment for Flutter course of Innopolis University.
 
-## Getting Started
+## Description
 
-This project is a starting point for a Flutter application.
+### Home view 
+ - Contains a jokes that are fetched from chack norris api. 
+ - To change joke, click on floating button at righ-bottom part of screen.
+ - To add joke to favorites, click on stars icon, located under joke text, at the center. 
+ - To see favorite jokes, click on 'Or go to favorites' button. It will navigate you to corresponding page.  
 
-A few resources to get you started if this is your first Flutter project:
+![home](figures/home.jpg)
+![home loading](figures/home_loading.jpg)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### Favorite jokes view
+- Contains a list of favorite jokes
+- User can delete any joke from favorites
+- The favorite jokes are stored in device memory, so they will be able after reboting application
+![favorite jokes](figures/fav.jpg)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Icon app
+![launch icon](figures/launch.jpg)
